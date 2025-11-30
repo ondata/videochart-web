@@ -1,0 +1,13 @@
+/* xkcd Font */
+@font-face {
+    font-family: 'xkcd Script';
+    src: url('xkcd-script.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback font stack for xkcd style */
+.xkcd-font {
+    font-family: 'xkcd Script', 'Comic Sans MS', cursive;
+}

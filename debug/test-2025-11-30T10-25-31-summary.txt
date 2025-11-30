@@ -1,0 +1,24 @@
+Debug Session Summary
+================================================================================
+
+Session ID: test-2025-11-30T10-25-31
+Duration: 11414.30ms
+Total Logs: 22
+Total Frames: 10
+Total Frame Size: 0.46 MB
+
+Logs by Level:
+  SESSION: 1
+  DEBUG: 3
+  INFO: 3
+  ANIMATION: 5
+  RENDER: 10
+
+Files in this package:
+- summary.txt (this file)
+- logs.txt (detailed logs)
+- config.json (chart configuration)
+- data.json (input data)
+- frame-XXXX.png (captured frames)
+
+================================================================================

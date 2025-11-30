@@ -1,0 +1,10 @@
+{
+  "title": "GDP BY COUNTRY (IN $)",
+  "barColor": "#0084bd",
+  "bgColor": "#FFFFFF",
+  "fontSize": 24,
+  "fontFamily": "xkcd Script",
+  "videoDuration": 5,
+  "resolution": "1080p",
+  "fps": 30
+}

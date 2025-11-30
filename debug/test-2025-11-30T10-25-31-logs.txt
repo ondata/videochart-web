@@ -1,0 +1,129 @@
+Debug Session: test-2025-11-30T10-25-31
+Generated: 2025-11-30T10:25:43.385Z
+Total Logs: 22
+Total Frames: 10
+
+================================================================================
+
+METADATA:
+  videoSize: 112855
+
+LOGS:
+
+[2025-11-30T10:25:31.968Z] [0.00ms] [SESSION] Started session: test-2025-11-30T10-25-31
+
+[2025-11-30T10:25:31.968Z] [0.20ms] [DEBUG] Configuration saved
+  Data: {
+  "title": "GDP BY COUNTRY (IN $)",
+  "barColor": "#0084bd",
+  "bgColor": "#FFFFFF",
+  "fontSize": 24,
+  "fontFamily": "xkcd Script",
+  "videoDuration": 5,
+  "resolution": "1080p",
+  "fps": 30
+}
+
+[2025-11-30T10:25:31.969Z] [0.60ms] [DEBUG] Data saved
+  Data: {
+  "countries": 3,
+  "values": 3
+}
+
+[2025-11-30T10:25:31.969Z] [0.80ms] [INFO] Video generation started
+
+[2025-11-30T10:25:31.978Z] [9.90ms] [ANIMATION] Creating timeline
+  Data: {
+  "duration": 5,
+  "canvasSize": "1920x1080"
+}
+
+[2025-11-30T10:25:31.978Z] [10.20ms] [ANIMATION] Chart metadata loaded
+  Data: {
+  "barsCount": 3,
+  "dataPoints": [
+    80000,
+    70000,
+    35000
+  ]
+}
+
+[2025-11-30T10:25:32.108Z] [140.30ms] [RENDER] Captured frame #1: frame-1
+  Data: {
+  "size": "51.74 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:32.352Z] [384.30ms] [RENDER] Captured frame #10: frame-10
+  Data: {
+  "size": "55.97 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:32.687Z] [718.70ms] [RENDER] Captured frame #20: frame-20
+  Data: {
+  "size": "60.74 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:34.177Z] [2209.00ms] [RENDER] Captured frame #60: frame-60
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:34.394Z] [2425.50ms] [RENDER] Captured frame #70: frame-70
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:34.710Z] [2741.50ms] [RENDER] Captured frame #80: frame-80
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:36.045Z] [4076.60ms] [RENDER] Captured frame #120: frame-120
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:36.377Z] [4409.10ms] [RENDER] Captured frame #130: frame-130
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:36.704Z] [4735.90ms] [RENDER] Captured frame #140: frame-140
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:37.014Z] [5045.70ms] [ANIMATION] Timeline completed
+  Data: {
+  "totalFrames": 150,
+  "duration": 5
+}
+
+[2025-11-30T10:25:37.014Z] [5046.00ms] [ANIMATION] Animation complete, stopping recorder
+
+[2025-11-30T10:25:37.023Z] [5055.40ms] [INFO] Video generation complete
+
+[2025-11-30T10:25:37.024Z] [5055.60ms] [DEBUG] Metadata: videoSize
+  Data: {
+  "value": 112855
+}
+
+[2025-11-30T10:25:37.030Z] [5062.40ms] [ANIMATION] Animator destroyed
+
+[2025-11-30T10:25:37.097Z] [5129.20ms] [RENDER] Captured frame #150: frame-150
+  Data: {
+  "size": "43.04 KB",
+  "dimensions": "1920x1080"
+}
+
+[2025-11-30T10:25:43.382Z] [11414.00ms] [INFO] Creating debug package...
+

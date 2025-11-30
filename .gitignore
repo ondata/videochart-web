@@ -1,0 +1,33 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (if used for development)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python (if used for local server)
+__pycache__/
+*.pyc
+
+# Generated videos (optional - comment out if you want to track examples)
+*.webm
+*.mp4
+
+# Temporary files
+*.tmp
+.cache/
+
+# Gemini related files
+DEBUG.md
+DEBUG_SYSTEM_READY.md
+FRAME_DOWNLOAD_FIX.md
+MVP_COMPLETE.md

@@ -1,0 +1,5 @@
+{
+    "countries": ["USA", "Germany", "Italy"],
+    "gdp": [80000, 70000, 35000]
+}
+

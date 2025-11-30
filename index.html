@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate animated chart videos in your browser - offline, no server needed">
+    <title>VideoCharts Web - Animated Chart Video Generator</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/chart-preview.css">
+    <link rel="stylesheet" href="css/debug.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>VideoCharts Web</h1>
+            <p class="subtitle">Generate animated chart videos in your browser</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar - Controls -->
+            <aside class="sidebar">
+                <!-- Step 1: Data Input -->
+                <section class="step" id="step-data">
+                    <h2>Step 1: Carica Dati</h2>
+
+                    <div class="drop-zone" id="dropZone">
+                        <div class="drop-zone-content">
+                            <svg class="upload-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Trascina file JSON qui</p>
+                            <p class="small">oppure</p>
+                            <button class="btn btn-secondary" id="browseBtn">Sfoglia File</button>
+                            <input type="file" id="fileInput" accept=".json" hidden>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-link" id="loadExampleBtn">Carica Esempio</button>
+
+                    <div class="data-info" id="dataInfo" style="display: none;">
+                        <div class="info-item">
+                            <span class="label">File:</span>
+                            <span class="value" id="fileName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Righe:</span>
+                            <span class="value" id="dataRows">-</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 2: Configuration -->
+                <section class="step" id="step-config" style="display: none;">
+                    <h2>Step 2: Configura</h2>
+
+                    <div class="form-group">
+                        <label for="chartTitle">Titolo</label>
+                        <input type="text" id="chartTitle" value="GDP BY COUNTRY (IN $)" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="barColor">Colore Barre</label>
+                        <div class="color-input-group">
+                            <input type="color" id="barColor" value="#000000">
+                            <input type="text" id="barColorHex" value="#000000" class="form-input color-hex">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bgColor">Sfondo</label>
+                        <div class="color-input-group">
+                            <input type="color" id="bgColor" value="#FFFFFF">
+                            <input type="text" id="bgColorHex" value="#FFFFFF" class="form-input color-hex">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fontSize">Font Size: <span id="fontSizeValue">24px</span></label>
+                        <input type="range" id="fontSize" min="16" max="48" value="24" class="form-range">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoDuration">Durata Video: <span id="durationValue">5s</span></label>
+                        <input type="range" id="videoDuration" min="3" max="10" value="5" class="form-range">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="typewriterEffect">
+                            <span>Typewriter Effect (titolo lettera per lettera)</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Risoluzione</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="resolution" value="480p">
+                                <span>480p (854x480)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="resolution" value="720p">
+                                <span>720p (1280x720)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="resolution" value="1080p" checked>
+                                <span>1080p (1920x1080)</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 3: Generate -->
+                <section class="step" id="step-generate" style="display: none;">
+                    <h2>Step 3: Genera Video</h2>
+
+                    <!-- Debug Mode Toggle -->
+                    <div class="debug-toggle">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="debugModeCheckbox">
+                            <span>Debug Mode (cattura frames & logs)</span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="generateBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Genera Video
+                    </button>
+
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Inizializzazione...</p>
+                        <p class="progress-percent" id="progressPercent">0%</p>
+                    </div>
+
+                    <div class="video-result" id="videoResult" style="display: none;">
+                        <video id="resultVideo" controls></video>
+                        <button class="btn btn-secondary" id="downloadBtn">Download Video</button>
+                    </div>
+
+                    <!-- Debug Panel -->
+                    <div class="debug-panel" id="debugPanel" style="display: none;">
+                        <h3>Debug Output</h3>
+                        <div class="debug-info" id="debugInfo">
+                            <p><strong>Session:</strong> <span id="debugSessionId">-</span></p>
+                            <p><strong>Frames catturati:</strong> <span id="debugFramesCount">0</span></p>
+                            <p><strong>Log entries:</strong> <span id="debugLogsCount">0</span></p>
+                        </div>
+                        <div class="debug-actions">
+                            <button class="btn btn-small btn-secondary" id="downloadLogsBtn">Download Logs</button>
+                            <button class="btn btn-small btn-secondary" id="downloadConfigBtn">Download Config</button>
+                            <button class="btn btn-small btn-secondary" id="downloadDataBtn">Download Data</button>
+                            <button class="btn btn-small btn-secondary" id="downloadFramesBtn">Download Frames (⚠️ molti file)</button>
+                            <button class="btn btn-small btn-primary" id="downloadDebugPackageBtn">Download All Debug Files</button>
+                        </div>
+                        <div class="debug-warning" id="framesWarning" style="display: none;">
+                            <p>⚠️ Stai per scaricare <strong><span id="framesWarningCount">0</span> frame PNG</strong>. Ogni frame è ~65KB. Continuare?</p>
+                            <button class="btn btn-small btn-primary" id="confirmDownloadFramesBtn">Sì, scarica tutti</button>
+                            <button class="btn btn-small btn-secondary" id="cancelDownloadFramesBtn">Annulla</button>
+                        </div>
+                        <div class="debug-logs" id="debugLogs">
+                            <h4>Live Logs</h4>
+                            <div class="logs-container" id="logsContainer"></div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main - Preview Area -->
+            <main class="preview-area">
+                <div class="preview-header">
+                    <h3>Preview</h3>
+                    <button class="btn btn-small" id="refreshPreviewBtn" style="display: none;">Aggiorna</button>
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <div class="preview-placeholder">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        <p>Carica i dati per vedere la preview</p>
+                    </div>
+                    <canvas id="previewCanvas" style="display: none;"></canvas>
+                </div>
+
+                <!-- Hidden canvas for video recording -->
+                <canvas id="recordingCanvas" style="display: none;"></canvas>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>VideoCharts Web - 100% client-side, no server needed</p>
+        </footer>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal" style="display: none;">
+        <div class="modal-content">
+            <h3>Errore</h3>
+            <p id="errorMessage"></p>
+            <button class="btn btn-secondary" id="closeErrorBtn">Chiudi</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="lib/chart.min.js"></script>
+    <script src="lib/gsap.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
